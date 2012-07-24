@@ -1,0 +1,23 @@
+﻿Assignment 7: Newton-Raphson Part 3: Report
+Jason Koceja - CSC143 SP12
+
+How did you go about starting this project?
+	I started out by testing the Newton-Raphson method with pen and paper just to grasp what was actually taking place. After I got the hang of it math-style, then I tried writing it out in a single line-form as if I were typing it into a txt document, and used that for pseudo code. Then I made sure I had the root methods coded correctly first, with pre-condition testing, and used a main method with some test comparisons. Once I knew the inner workings of the methods, it made it easier for me to find the ways to break it with JUnit.
+    
+What works and what doesn’t?
+	Doesn't: Running blind. To find a number that would cause 100 iterations in my test cases I tried random numbers and types of numbers, hoping to find the one magical number. I would just plug it in, click "Run", get my hopes up, aaaaand get a square root instead of an exception.
+	Does: Remembering that even though there is no "viewing window" to watch the CPU work as it iterates through my root methods, there is a way to make it report: System.out.println. Duh. When I plugged in numbers into my test cases hoping to break my root methods, I did so at random, and yet didn't have a clue if it took a single iteration or ninety. Then I remembered: I have an accumulator variable working with my max boundary; why not tell it to also "println" that count. Again, duh. 
+    
+Surprises or problems you encountered while implementing this application
+	The Newton-Raphson method is a resilient one! In an effort to max out the iterations I tried every combination of numbers: decimals, exponentials, even Pi and Pi to the Pi. Everything returned a root and nothing threw the exception I hoped for (hitting 100 iterations).
+	It was neat to see just how many iterations the methods actually needed to return the root values. Smaller numbers often times took longer to root than larger numbers.
+    
+The most important thing(s) you learned from each portion of the assignment
+	Doubles. I learned to understand them, fear them, respect them, and learn their limits. The numerical limit of doubles (10 digits) really can throw off the accuracy of your code and return unintended results. For example: When I tried Pi as a parameter in my test cases, hoping to return an exception for max iterations, because I was using doubles Pi was limited to 10 digits. Java doesn't care that Pi has an infinite number of digits when used as a double; it only cares about the first ten places. That made it just another ten digit number, big whoop. If working with very small numbers, or very large numbers, I may not be able to trust double and may need long instead.
+    
+What you would do differently next time?
+	Next time I would remember "There is no need to guess, it just wastes time." Often I forget that I can make the code tell me anything I need it to. It is as if I need to plan to "over-code" my classes during development. There is nothing in the assignment that says "include some temporary code to print what is happening before/during/after runtime rather than guess." That needs to be something I add-on during the design process to help make myself more efficient. 
+    
+[Challenge option] 
+The boundary values where the square root and cube root implementations do not "converge" within 100 iterations, reported to two significant digits.
+	sqrt() first reaches max iterations with a parameter of 6.8e56, and cbrt() with 7.8e24. I tweaked my cbrt and sqrt methods temporarily to return iteration counts instead of root values, then wrote a helper method to loop until each returned 100 and printed the parameter used. The loop started with a parameter of 10 for sqrt() and cbrt() and fractionally increased each pass until the iteration count of 100 was returned. Once the maxing value was determined, I simply rounded up the tenths place since rounding down would obviously still pass.
